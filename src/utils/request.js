@@ -16,7 +16,7 @@ const handleResponse = (url, response) => {
   if (response.status < 500) {
     return response.json();
   } else {
-    console.error(`Request failed. URL = ${url}. Message = ${response.statusText}`);
+    console.error(`Request failed. URL = ${url}.Message = ${response.statusText}`);
     return {error: {message: 'Request failed due to server error'}};
   }
 };
@@ -28,7 +28,7 @@ export const get = url => {
   }).then(res => {
     return handleResponse(url, res);
   }).catch(err => {
-    console.error(`Request failed. URL = ${url}. Message = ${err}`);
+    console.error(`Request failed. URL = ${url}.Message = ${err}`);
     return {error: {message: "Request failed."}};
   })
 };
@@ -41,7 +41,7 @@ export const post = (url, data) => {
   }).then(res => {
     return handleResponse(url, res);
   }).catch(err => {
-    console.error(`Request failed. URL = ${url}. Message = ${err}`);
+    console.error(`Request failed. URL = ${url}.Message = ${err}`);
     return {error: {message: "Request failed."}};
   })
 }
@@ -54,7 +54,7 @@ export const put = (url, data) => {
   }).then(res => {
     return handleResponse(url, res);
   }).catch(err => {
-    console.error(`Request failed. URL = ${url}. Message = ${err}`);
+    console.error(`Request failed. URL = ${url}.Message = ${err}`);
     return {error: {message: "Request failed."}};
   })
 };

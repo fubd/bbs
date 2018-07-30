@@ -21,6 +21,8 @@ export const actions = {
       const params = { username, password };
       return post(url.login(), params).then(data => {
         // 请求结束后发送action
+        dispatch(appActions.finishRequest());
+
         if (!data.error) {
           dispatch(actions.setLoginInfo(data.userId, username));
         } else {
@@ -29,9 +31,9 @@ export const actions = {
       })
     }
   },
-  logout: () => {
+  logout: () => ({
     type: types.LOGOUT
-  },
+  }),
   setLoginInfo: (userId, username) => ({
     type: types.LOGIN,
     userId,
