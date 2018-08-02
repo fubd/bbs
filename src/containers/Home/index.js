@@ -4,10 +4,12 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { actions as authActions, getLoggedUser } from '../../redux/modules/auth';
 import Header from "../../components/Header";
+import PostList from '../PostList/index';
+import postsView from "../PostList/components/PostsView";
 
 class Home extends Component {
   render() {
-    const { location, user } = this.props;
+    const { location, user, match } = this.props;
     // 向Header组件传入username就行
     const username = user && user.username ? user.username : "";
     return (
@@ -16,6 +18,11 @@ class Home extends Component {
           username={username}
           location={location}
           logout={() => { this.props.logout() }}
+        />
+        <Route
+          path={match.url}
+          exact
+          render={() => (<PostList />)}
         />
       </div>
     );

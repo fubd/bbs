@@ -16,4 +16,13 @@ const rootReducer = combineReducers({
   users
 });
 
+// complex selectors
+export const getPostListWithAuthors = state => {
+  const postIds = getPostIds(state);
+  return postIds.map(id => {
+    const post = getPostById(state, id);
+    return { ...post, author: getUserById(state, post.author) };
+  });
+};
+
 export default rootReducer;

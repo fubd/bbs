@@ -138,7 +138,7 @@ const convertPostsToPlain = posts => {
 
   return {
     posts: postsById,
-    postsById,
+    postsIds,
     authors: authorsById
   }
 };
@@ -191,5 +191,12 @@ const reducer = combineReducers({
   allIds,
   byId
 });
+
+// selectors
+export const getPostIds = state => state.posts.allIds;
+
+export const getPostList = state => state.posts.byId;
+
+export const getPostById = (state, id) => state.posts.byId[id];
 
 export default reducer;
