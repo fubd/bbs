@@ -8,6 +8,7 @@ import { getLoggedUser } from "../../redux/modules/auth";
 import { actions as uiActions, isAddDialogOpen } from "../../redux/modules/ui";
 import PostsView from "./components/PostsView";
 import "./style.css";
+import PostEditor from "../Post/components/PostEditor";
 
 class PostList extends Component {
   constructor(props) {
@@ -20,6 +21,16 @@ class PostList extends Component {
   componentDidMount() {
     this.props.fetchAllPosts();  // 获取帖子列表
   }
+
+  // 保存帖子
+  handleSave = data => {
+    this.props.createPost(data.title, data.content);
+  };
+
+  // 取消新建帖子
+  handleCancel = () => {
+    this.props.closeAddDialog();
+  };
 
   // 新建帖子
   handleNewPost = () => {
@@ -39,6 +50,9 @@ class PostList extends Component {
             ) : null
           }
         </div>
+        {isAddDialogOpen ? (
+          <PostEditor onSave={this.handleSave} onCancel={this.handleCancel} />
+        ) : null}
         <PostsView posts={posts}/>
       </div>
     )

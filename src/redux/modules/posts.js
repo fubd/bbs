@@ -107,10 +107,10 @@ const fetchPostSuccess = (post, author) => ({
 });
 
 // 创建帖子成功
-const createPostSuccess = post => {
+const createPostSuccess = post => ({
   type: types.CREATE_POST,
   post
-};
+});
 
 // 更新帖子成功
 const updatePostSuccess = post => {
@@ -165,7 +165,7 @@ const allIds = (state = initialState.allIds, action) => {
     case types.FETCH_ALL_POSTS:
       return action.postIds;
     case types.CREATE_POST:
-      return [...state, action.post.id];
+      return [ action.post.id, ...state ];
     default:
       return state;
   }
