@@ -25,4 +25,21 @@ export const getPostListWithAuthors = state => {
   });
 };
 
+export const getPostDetail = (state, id) => {
+  const post = getPostById(state, id);
+  return post ? { ...post, author: getUserById(state, post.author) } : null;
+};
+
+export const getCommentsWithAuthors = (state, postId) => {
+  const commentIds = getCommentIdsByPost(state, postId);
+  if (commentIds) {
+    return commentIds.map(id => {
+      const comment = getCommentById(state, id);
+      return { ...comment, author: getUserById(state, comment.author) };
+    });
+  } else {
+    return [];
+  }
+};
+
 export default rootReducer;

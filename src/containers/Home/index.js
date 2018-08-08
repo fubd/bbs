@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import { actions as authActions, getLoggedUser } from '../../redux/modules/auth';
 import Header from "../../components/Header";
 import PostList from '../PostList/index';
-import postsView from "../PostList/components/PostsView";
-
+import Post from '../Post';
 class Home extends Component {
   render() {
     const { location, user, match } = this.props;
@@ -23,6 +22,10 @@ class Home extends Component {
           path={match.url}
           exact
           render={() => (<PostList />)}
+        />
+        <Route
+          path={`${match.url}/:id`}
+          render={props => <Post {...props} />}
         />
       </div>
     );
