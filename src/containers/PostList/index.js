@@ -39,7 +39,6 @@ class PostList extends Component {
 
   render() {
     const { posts, user, isAddDialogOpen } = this.props;
-    console.log(this.props);
     return (
       <div className="postList">
         <div>
